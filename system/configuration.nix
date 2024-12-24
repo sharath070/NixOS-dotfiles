@@ -119,6 +119,8 @@
     unrar
     zed-editor
     nodejs
+    go
+    gopls
     qbittorrent
     vlc
     brave

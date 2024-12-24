@@ -5,7 +5,11 @@
 }: {
   programs.zed-editor = {
     enable = true;
-    extensions = ["nix"];
+    extensions = [
+      "nix"
+      "git-firefly"
+      "html"
+    ];
 
     ## everything inside of these brackets are Zed options.
     userSettings = {
@@ -24,6 +28,22 @@
         Nix = {
           language_servers = ["nil" "!nixd"];
           formatter = {external = {command = "alejandra";};};
+        };
+      };
+
+      lsp = {
+        gopls = {
+          initialization_options = {
+            hints = {
+              "assignVariableTypes" = true;
+              "compositeLiteralFields" = true;
+              "compositeLiteralTypes" = true;
+              "constantValues" = true;
+              "functionTypeParameters" = true;
+              "parameterNames" = true;
+              "rangeVariableTypes" = true;
+            };
+          };
         };
       };
 
