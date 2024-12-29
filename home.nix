@@ -1,8 +1,15 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
+  imports = [
+    # inputs.nix-colors.homeManagerModules.default
+  ];
+
+  # colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "sharath";

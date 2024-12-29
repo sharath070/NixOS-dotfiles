@@ -9,6 +9,8 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = {
@@ -17,7 +19,7 @@
     nixpkgs-stable,
     home-manager,
     ...
-  }: let
+  } @ inputs: let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
     pkgs = nixpkgs.legacyPackages.${system};
@@ -36,6 +38,9 @@
       sharath = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [./home.nix];
+        extraSpecialArgs = {
+          inherit inputs;
+        };
       };
     };
   };

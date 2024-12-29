@@ -80,19 +80,24 @@
     wget
     git
     neovim
-    mediawriter
     nixd
     alejandra
     vscode-fhs
+    nodejs
     unzip
+    vlc
     kitty
     nwg-look
     rofi
     waybar
+    swaynotificationcenter
+    fastfetch
+    qbittorrent
   ];
 
   fonts.packages = with pkgs-stable; [
     nerdfonts
+    jetbrains-mono
   ];
 
   programs.firefox.enable = true;
