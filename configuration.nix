@@ -53,13 +53,7 @@
   };
 
   #xfce settings
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver = {
-    desktopManager = {
-      xterm.enable = false;
-      xfce.enable = true;
-    };
-  };
+  services.xserver.displayManager.sddm.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sharath = {
@@ -92,6 +86,7 @@
     fastfetch
     hyprpaper
     qbittorrent
+    xfce.thunar
   ];
 
   fonts.packages = with pkgs-stable; [
