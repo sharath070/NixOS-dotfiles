@@ -61,8 +61,6 @@
     };
   };
 
-  services.displayManager.defaultSession = "xfce";
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sharath = {
     isNormalUser = true;
@@ -92,12 +90,12 @@
     waybar
     swaynotificationcenter
     fastfetch
+    hyprpaper
     qbittorrent
   ];
 
   fonts.packages = with pkgs-stable; [
     nerdfonts
-    jetbrains-mono
   ];
 
   programs.firefox.enable = true;
