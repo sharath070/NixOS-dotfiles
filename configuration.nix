@@ -68,26 +68,49 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    wget
-    git
-    neovim
-    nixd
-    alejandra
-    vscode-fhs
-    nodejs
-    unzip
-    vlc
-    kitty
-    nwg-look
-    rofi
-    waybar
-    swaynotificationcenter
-    fastfetch
-    hyprpaper
-    qbittorrent
-    xfce.thunar
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      wget
+      git
+      neovim
+      nixd
+      alejandra
+      vscode-fhs
+      nodejs
+      unzip
+      vlc
+      kitty
+      nwg-look
+      rofi
+      waybar
+      swaynotificationcenter
+      fastfetch
+      hyprpaper
+      qbittorrent
+      xfce.thunar
+    ])
+    ++ (with pkgs-stable; [
+      ]);
+
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+  security.polkit.enable = true;
+  systemd = {
+    user.services.polkit-mate-authentication-agent-1 = {
+      description = "polkit-mate-authentication-agent-1";
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
 
   fonts.packages = with pkgs-stable; [
     nerdfonts
