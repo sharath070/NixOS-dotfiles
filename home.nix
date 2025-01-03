@@ -89,6 +89,43 @@
     };
   };
 
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    enableCompletion = true;
+
+    shellAliases = {
+      ll = "ls -l";
+      edit = "sudo -e";
+      update = "sudo nixos-rebuild switch";
+    };
+
+    history.size = 10000;
+    history.ignoreAllDups = true;
+    history.path = "$HOME/.zsh_history";
+    history.ignorePatterns = ["rm *" "pkill *" "cp *"];
+
+    initExtra = ''
+      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    '';
+
+    zplug = {
+      enable = true;
+      plugins = [
+        {
+          name = "romkatv/powerlevel10k";
+          tags = ["as:theme" "depth:1"];
+        }
+      ];
+    };
+  };
+
+  # home.file.".p10k.zsh" = {
+  #   source = ./.p10k.zsh;
+  #   executable = true;
+  # };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

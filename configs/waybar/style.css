@@ -5,7 +5,7 @@
 }
 
 window#waybar {
-  background: #16161e;
+  background: rgba(22, 22, 30, 0.9);
   /*  border-radius: 15px; */
   /*  border: 2px solid #124323; */
   /* border: 0px solid #A1BDCE; */
@@ -18,7 +18,6 @@ window#waybar {
   font-family: "JetBrains Mono Nerd Font";
   font-size: 18px;
   margin-left: -2px;
-  margin-top: -4px;
   padding-bottom: 12px;
 }
 
@@ -325,6 +324,10 @@ tooltip {
   padding: 0px;
 }
 
+#privacy {
+  margin-left: 7px;
+}
+
 #custom-r_end {
   border-radius: 0px 7px 7px 0px;
   margin-right: 1px;
@@ -371,4 +374,8 @@ tooltip {
 #group-minimized {
   border-left: solid;
   border-left-width: 0.5;
+}
+
+#group-privacy {
+  margin-left: 7px;
 }

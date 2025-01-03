@@ -18,14 +18,17 @@
   // positions generated based on config.ctl //
 
   "modules-left": ["custom/spacer", "hyprland/workspaces", "custom/spacer"],
-  "modules-center": ["mpris"],
+  "modules-center": [],
   "modules-right": [
     "group/expand",
     "network",
     "group/expand-3",
     "group/expand-2",
+    "privacy",
     "clock",
-    "upower",
+    // "upower",
+    // "upower/headset",
+    "battery",
     "custom/notification"
   ],
 
@@ -121,6 +124,17 @@
     "rotate": 0
   },
 
+  "privacy": {
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ]
+  },
+
   "custom/notification": {
     "tooltip": false,
     "rotate": 0,
@@ -138,8 +152,8 @@
     "return-type": "json",
     "exec-if": "which swaync-client",
     "exec": "swaync-client -swb",
+    "on-click-release": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
-    "on-click": "swaync-client -t -sw",
     "escape": true
   },
 
@@ -342,9 +356,9 @@
     "format-charging": "<span color='#a6d189'>󱐋</span>",
     "format-plugged": "󰂄",
     // "format-alt": "<<span weight='bold' color='#c2864a'>{time} <span weight='bold' color='white'>| <span weight='bold' color='#82d457'>{capacity}%</span></span></span>",
-    "format-icons": ["󰝦", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
-    //  "format-icons": ["","","","","","","",""],
-    //"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    // "format-icons": ["󰝦", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
+    // "format-icons": ["", "", "", "", "", "", "", ""],
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "on-click-right": "pkill waybar & hyprctl dispatch exec waybar"
     //  "format-icons": [<i class='fa-solid fa-wifi-slash'></i>],
   },
@@ -357,7 +371,8 @@
     "on-scroll-up": "brightnessctl set +5%",
     "on-scroll-down": "brightnessctl s 5%-",
     "min-length": 2,
-    "tooltip": true
+    "tooltip": true,
+    "tooltip-format": "Brightness // {percent}%"
   },
 
   "group/expand-2": {
@@ -379,7 +394,7 @@
       "transition-to-left": true,
       "click-to-reveal": true
     },
-    "modules": ["pulseaudio", "pulseaudio/slider"]
+    "modules": ["pulseaudio", "pulseaudio/slider", "pulseaudio#microphone"]
   },
 
   "network": {
@@ -408,7 +423,7 @@
       "headphone": "󰋋",
       "hands-free": "󰋋",
       "headset": "󰋋",
-      "phone": "",
+      "phone": "",
       "portable": "",
       "car": "",
       "default": ["", "", ""]
@@ -418,7 +433,7 @@
   "pulseaudio#microphone": {
     "format": "{format_source}",
     "rotate": 0,
-    "format-source": "",
+    "format-source": "",
     "format-source-muted": "",
     "on-click": "pavucontrol -t 4",
     "on-click-middle": "volumecontrol.sh -i m",
