@@ -107,7 +107,7 @@
     history.ignorePatterns = ["rm *" "pkill *" "cp *"];
 
     initExtra = ''
-      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+      source ~/.p10k.zsh
     '';
 
     zplug = {
@@ -121,10 +121,12 @@
     };
   };
 
-  # home.file.".p10k.zsh" = {
-  #   source = ./.p10k.zsh;
-  #   executable = true;
-  # };
+  # home.file.".p10k.zsh".text = builtins.readFile ./p10k.zsh;
+
+  home.file.".p10k.zsh" = {
+    source = ./.p10k.zsh;
+    executable = true;
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

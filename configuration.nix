@@ -104,6 +104,7 @@
       pavucontrol
       rsclock
       btop
+      mediawriter
     ])
     ++ (with pkgs-stable; [
       ]);
