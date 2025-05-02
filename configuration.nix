@@ -5,6 +5,7 @@
   config,
   pkgs,
   pkgs-stable,
+  inputs,
   ...
 }: {
   imports = [
@@ -44,7 +45,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  services.xserver.enable = true;
+  services.xserver.enable = false;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -52,17 +53,53 @@
     variant = "";
   };
 
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = false;
 
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sharath = {
     isNormalUser = true;
     description = "Sharath";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [];
+    packages = with pkgs; [
+      cava
+      pipes
+      wlogout
+      htop
+      nodejs
+      go
+      tmux
+      unzip
+      vlc
+      vivaldi
+      kitty
+      nwg-look
+      rofi-wayland
+      waybar
+      hyprlock
+      swaynotificationcenter
+      fastfetch
+      hyprpaper
+      swww
+      hyprshot
+      xdg-user-dirs
+      qbittorrent
+      xfce.thunar
+      gedit
+      lsd
+      fzf
+      nitch
+      networkmanagerapplet
+      brightnessctl
+      kooha
+      stow
+      pavucontrol
+      rsclock
+      btop
+      mediawriter
+    ];
   };
 
   # Allow unfree packages
@@ -74,37 +111,13 @@
     (with pkgs; [
       wget
       git
+      gnumake
+      gcc
       neovim
       nixd
       alejandra
-      cava
-      pipes
-      wlogout
-      htop
-      vscode-fhs
-      nodejs
-      unzip
-      vlc
-      kitty
-      nwg-look
-      rofi-wayland
-      waybar
-      hyprlock
-      swaynotificationcenter
-      fastfetch
-      hyprpaper
-      hyprshot
-      xdg-user-dirs
-      qbittorrent
-      xfce.thunar
-      gedit
-      networkmanagerapplet
-      brightnessctl
-      kooha
-      pavucontrol
-      rsclock
-      btop
-      mediawriter
+      home-manager
+      ripgrep
     ])
     ++ (with pkgs-stable; [
       ]);
@@ -133,14 +146,13 @@
     nerdfonts
   ];
 
-  programs.firefox.enable = true;
   programs.hyprland.enable = true;
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -149,6 +161,70 @@
     pulse.enable = true;
     wireplumber.enable = true;
     jack.enable = true;
+  };
+
+  # kanata config
+  # Enable the uinput module
+  boot.kernelModules = ["uinput"];
+
+  # Enable uinput
+  hardware.uinput.enable = true;
+
+  # Set up udev rules for uinput
+  services.udev.extraRules = ''
+    KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+  '';
+
+  # Ensure the uinput group exists
+  users.groups.uinput = {};
+
+  # Add the Kanata service user to necessary groups
+  systemd.services.kanata-internalKeyboard.serviceConfig = {
+    SupplementaryGroups = [
+      "input"
+      "uinput"
+    ];
+  };
+
+  services.kanata = {
+    enable = true;
+    keyboards = {
+      internalKeyboard = {
+        devices = [
+          # Replace the paths below with the appropriate device paths for your setup.
+          # Use `ls /dev/input/by-path/` to find your keyboard devices.
+          "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
+          "/dev/input/by-path/pci-0000:00:14.0-usb-0:1:1.0-event-kbd"
+        ];
+        extraDefCfg = "process-unmapped-keys yes";
+        config = ''
+          (defsrc
+            caps tab
+            ; '
+            lalt
+          )
+
+          (defvar
+            tap-time 200
+            hold-time 200
+          )
+
+          (defalias
+            caps-mod (tap-hold $tap-time $hold-time lctl lctl)
+            tab-mod (tap-hold $tap-time $hold-time tab lmet)
+            ;-mod (tap-hold $tap-time $hold-time ; rmet)
+            '-mod (tap-hold $tap-time $hold-time ' rctl)
+            lalt-mod (tap-hold $tap-time $hold-time caps lalt)
+          )
+
+          (deflayer base
+            @caps-mod @tab-mod
+            @;-mod @'-mod
+            @lalt-mod
+          )
+        '';
+      };
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -27,22 +27,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -77,7 +61,7 @@
   #  /etc/profiles/per-user/sharath/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   programs.git = {
@@ -89,43 +73,24 @@
     };
   };
 
-  programs.zsh = {
+  gtk = {
     enable = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    enableCompletion = true;
-
-    shellAliases = {
-      ll = "ls -l";
-      edit = "sudo -e";
-      update = "sudo nixos-rebuild switch";
+    theme = {
+      name = "Tokyonight-Dark";
+      package = pkgs.tokyonight-gtk-theme;
     };
-
-    history.size = 10000;
-    history.ignoreAllDups = true;
-    history.path = "$HOME/.zsh_history";
-    history.ignorePatterns = ["rm *" "pkill *" "cp *"];
-
-    initExtra = ''
-      source ~/.p10k.zsh
-    '';
-
-    zplug = {
-      enable = true;
-      plugins = [
-        {
-          name = "romkatv/powerlevel10k";
-          tags = ["as:theme" "depth:1"];
-        }
-      ];
+    iconTheme = {
+      name = "kora";
+      package = pkgs.kora-icon-theme;
     };
   };
 
-  # home.file.".p10k.zsh".text = builtins.readFile ./p10k.zsh;
-
-  home.file.".p10k.zsh" = {
-    source = ./.p10k.zsh;
-    executable = true;
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+    style = {
+      name = "gtk2";
+    };
   };
 
   # Let Home Manager install and manage itself.

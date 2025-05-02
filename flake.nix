@@ -31,6 +31,7 @@
         modules = [./configuration.nix];
         specialArgs = {
           inherit pkgs-stable;
+          inherit inputs;
         };
       };
     };
