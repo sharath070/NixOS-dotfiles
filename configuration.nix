@@ -63,43 +63,48 @@
     isNormalUser = true;
     description = "Sharath";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-      cava
-      pipes
-      wlogout
-      htop
-      nodejs
-      go
-      tmux
-      unzip
-      vlc
-      vivaldi
-      kitty
-      nwg-look
-      rofi-wayland
-      waybar
-      hyprlock
-      swaynotificationcenter
-      fastfetch
-      hyprpaper
-      swww
-      hyprshot
-      xdg-user-dirs
-      qbittorrent
-      xfce.thunar
-      gedit
-      lsd
-      fzf
-      nitch
-      networkmanagerapplet
-      brightnessctl
-      kooha
-      stow
-      pavucontrol
-      rsclock
-      btop
-      mediawriter
-    ];
+    packages =
+      (with pkgs; [
+        go
+        nodejs
+        kitty
+        tmux
+        unzip
+        lsd
+        fzf
+        nwg-look
+        rofi-wayland
+        waybar
+        vlc
+        hyprlock
+        hyprcursor
+        swaynotificationcenter
+        fastfetch
+        hyprpaper
+        swww
+        hyprshot
+        xdg-user-dirs
+        qbittorrent
+        xfce.thunar
+        gedit
+        nitch
+        networkmanagerapplet
+        brightnessctl
+        kooha
+        stow
+        pavucontrol
+        rsclock
+        btop
+        cava
+        pipes
+        wlogout
+        htop
+        mediawriter
+        vivaldi
+		inputs.zen-browser.packages."${system}".default
+      ])
+      ++ (with pkgs-stable; [
+      ]);
   };
 
   # Allow unfree packages
@@ -121,6 +126,11 @@
     ])
     ++ (with pkgs-stable; [
       ]);
+
+services.postgresql = {
+  enable = true;
+  package = pkgs.postgresql;
+};
 
   services.devmon.enable = true;
   services.gvfs.enable = true;
@@ -146,7 +156,18 @@
     nerdfonts
   ];
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+  };
+  hardware = {
+    graphics.enable = true;
+    nvidia.modesetting.enable = true;
+  };
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;

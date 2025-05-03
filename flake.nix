@@ -10,6 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
@@ -23,7 +25,10 @@
     system = "x86_64-linux";
     lib = nixpkgs.lib;
     pkgs = nixpkgs.legacyPackages.${system};
-    pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+    pkgs-stable = import nixpkgs-stable {
+      system = system;
+      config.allowUnfree = true;
+    };
   in {
     nixosConfigurations = {
       nixos = lib.nixosSystem {

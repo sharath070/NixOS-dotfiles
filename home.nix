@@ -73,25 +73,29 @@
     };
   };
 
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Tokyonight-Dark";
-      package = pkgs.tokyonight-gtk-theme;
-    };
-    iconTheme = {
-      name = "kora";
-      package = pkgs.kora-icon-theme;
-    };
-  };
+  # gtk = {
+  #   enable = true;
+  #   theme = {
+  #     name = "Tokyonight-Dark";
+  #     package = pkgs.tokyonight-gtk-theme;
+  #   };
+  #   iconTheme = {
+  #     name = "kora";
+  #     package = pkgs.kora-icon-theme;
+  #   };
+  #   cursorTheme = {
+  #     name = "Bibata-Modern-Classic";
+  #     package = pkgs.bibata-cursors;
+  #   };
+  # };
 
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style = {
-      name = "gtk2";
-    };
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "gtk";
+  #   style = {
+  #     name = "gtk2";
+  #   };
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
