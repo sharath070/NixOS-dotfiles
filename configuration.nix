@@ -57,6 +57,8 @@
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
+  # programs.zsh.enable = true;
+  # users.defaultUserShell = pkgs.zsh;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sharath = {
@@ -71,6 +73,7 @@
         tmux
         unzip
         lsd
+		eza
         fzf
         nwg-look
         rofi-wayland

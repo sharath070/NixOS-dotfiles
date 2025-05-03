@@ -9,6 +9,19 @@ return {
 		require("telescope").setup {
 			extensions = {
 				fzf = {}
+			},
+			defaults = {
+				file_ignore_patterns = { 
+					"node_modules",
+					"%.conf*",
+					"%.git"
+				},
+				hidden = true,
+			},
+			pickers = {
+				find_files = {
+					hidden = true,
+				}
 			}
 		}
 

@@ -1,4 +1,3 @@
-nitch
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -37,8 +36,8 @@ zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 
-# Load completions
-autoload -Uz compinit && compinit
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
 
 zinit cdreplay -q
 
@@ -75,6 +74,9 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+# Load completions
+autoload -Uz compinit && compinit
+
 # Aliases
 alias vim='nvim'
 alias c='clear'
@@ -90,3 +92,4 @@ eval "$(fzf --zsh)"
 # eval "$(zoxide init --cmd cd zsh)"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=$PATH:$(go env GOPATH)/bin
+#nitch
