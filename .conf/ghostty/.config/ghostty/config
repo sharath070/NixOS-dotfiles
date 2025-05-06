@@ -13,5 +13,6 @@ window-padding-y = 0
 
 app-notifications = false
 resize-overlay = never
+confirm-close-surface = false
 
 # keybind = ctrl+shift+v=paste_from_clipboard
