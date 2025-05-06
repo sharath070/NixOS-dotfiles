@@ -73,24 +73,25 @@
         tmux
         unzip
         lsd
-		eza
+        eza
         fzf
         nwg-look
         rofi-wayland
         waybar
-        vlc
+		mpv
         hyprlock
-        hyprcursor
+        hyprshot
+        swww
+        wl-clipboard
+        cliphist
+        wl-clip-persist
         swaynotificationcenter
         fastfetch
-        hyprpaper
-        swww
-        hyprshot
-        xdg-user-dirs
+        nerdfetch
+        disfetch
         qbittorrent
         xfce.thunar
         gedit
-        nitch
         networkmanagerapplet
         brightnessctl
         kooha
@@ -103,11 +104,11 @@
         wlogout
         htop
         mediawriter
-        vivaldi
-		inputs.zen-browser.packages."${system}".default
+        brave
+        inputs.zen-browser.packages."${system}".beta
       ])
       ++ (with pkgs-stable; [
-      ]);
+        ]);
   };
 
   # Allow unfree packages
@@ -126,14 +127,15 @@
       alejandra
       home-manager
       ripgrep
+      xdg-user-dirs
     ])
     ++ (with pkgs-stable; [
       ]);
 
-services.postgresql = {
-  enable = true;
-  package = pkgs.postgresql;
-};
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql;
+  };
 
   services.devmon.enable = true;
   services.gvfs.enable = true;
@@ -159,14 +161,8 @@ services.postgresql = {
     nerdfonts
   ];
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL = "1";
-  };
+  programs.hyprland.enable = true;
+
   hardware = {
     graphics.enable = true;
     nvidia.modesetting.enable = true;

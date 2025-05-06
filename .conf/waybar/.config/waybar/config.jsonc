@@ -135,7 +135,7 @@
   },
 
   "hyprland/window": {
-    "format": "   {}",
+    "format": " {}",
     "rotate": 0,
     "separate-outputs": true,
     "rewrite": {
