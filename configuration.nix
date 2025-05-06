@@ -68,8 +68,9 @@
     packages =
       (with pkgs; [
         go
+		vscode-fhs
         nodejs
-        kitty
+		ghostty
         tmux
         unzip
         lsd
