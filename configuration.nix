@@ -74,7 +74,6 @@
         tmux
         unzip
         lsd
-        eza
         fzf
         nwg-look
         rofi-wayland
