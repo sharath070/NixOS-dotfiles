@@ -6,12 +6,14 @@ vim.g.have_nerd_font = true
 -- see `:help vim.opt`
 --  for more options, you can see `:help option-list`
 local set = vim.opt
+
+set.expandtab = true
+set.tabstop = 4
+set.softtabstop = 4
+set.shiftwidth = 4
+
 set.number = true
 set.relativenumber = true
-set.tabstop = 4
-set.shiftwidth = 4
-set.softtabstop = 4
-set.expandtab = true
 set.virtualedit = "block"
 set.termguicolors = true
 
@@ -24,7 +26,7 @@ set.showmode = false
 -- schedules the clipboard setting to happen later — after neovim finishes starting up
 -- the function inside vim.schedule() runs after neovim has finished loading all plugins, ui events, etc.
 vim.schedule(function()
-  set.clipboard = "unnamedplus"
+	set.clipboard = "unnamedplus"
 end)
 
 -- enable break indent
@@ -64,9 +66,9 @@ set.scrolloff = 10
 set.confirm = true
 
 vim.api.nvim_create_autocmd("textyankpost", {
-  desc = "highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+	desc = "highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
