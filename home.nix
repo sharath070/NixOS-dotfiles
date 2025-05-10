@@ -31,7 +31,6 @@
 	lua-language-server
 	stylua
 	gopls
-	gofumpt
 	gotools
   ];
 
