@@ -28,6 +28,8 @@
   # environment.
   home.packages = with pkgs; [
     starship
+	lua-language-server
+	stylua
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

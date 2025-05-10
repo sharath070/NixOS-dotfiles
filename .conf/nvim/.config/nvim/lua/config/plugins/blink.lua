@@ -1,7 +1,6 @@
 return {
 	{
 		'saghen/blink.cmp',
-		event = { "LspAttach" },
 		dependencies = { 'rafamadriz/friendly-snippets' },
 
 		version = '1.*',
