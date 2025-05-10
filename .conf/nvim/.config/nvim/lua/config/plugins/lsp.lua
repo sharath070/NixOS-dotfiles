@@ -29,6 +29,8 @@ return {
 				},
 			})
 
+			lspconfig.gopls.setup({})
+
 			vim.diagnostic.config({
 				float = { border = "rounded" },
 			})
