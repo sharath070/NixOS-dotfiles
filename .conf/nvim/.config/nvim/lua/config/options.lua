@@ -1,5 +1,5 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.g.have_nerd_font = true
 
@@ -10,11 +10,11 @@ set.number = true
 set.relativenumber = true
 set.tabstop = 4
 set.shiftwidth = 4
-set.virtualedit = 'block'
+set.virtualedit = "block"
 set.termguicolors = true
 
 -- enable mouse mode, can be useful for resizing splits for example!
-set.mouse = 'a'
+set.mouse = "a"
 
 -- don't show the mode, since it's already in the status line
 set.showmode = false
@@ -22,7 +22,7 @@ set.showmode = false
 -- schedules the clipboard setting to happen later — after neovim finishes starting up
 -- the function inside vim.schedule() runs after neovim has finished loading all plugins, ui events, etc.
 vim.schedule(function()
-	set.clipboard = 'unnamedplus'
+	set.clipboard = "unnamedplus"
 end)
 
 -- enable break indent
@@ -36,7 +36,7 @@ set.ignorecase = true
 set.smartcase = true
 
 -- symbols that appear before line nums (the git symbols)
-set.signcolumn = 'yes'
+set.signcolumn = "yes"
 
 -- decrease update time
 set.updatetime = 250
@@ -49,7 +49,7 @@ set.splitright = true
 set.splitbelow = true
 
 -- preview substitutions live, as you type!
-set.inccommand = 'split'
+set.inccommand = "split"
 
 -- show which line your cursor is on
 set.cursorline = true
@@ -61,9 +61,9 @@ set.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 set.confirm = true
 
-vim.api.nvim_create_autocmd('textyankpost', {
-	desc = 'highlight when yanking (copying) text',
-	group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+vim.api.nvim_create_autocmd("textyankpost", {
+	desc = "highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
 	end,

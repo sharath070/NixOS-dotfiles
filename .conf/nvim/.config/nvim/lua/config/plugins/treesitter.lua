@@ -2,11 +2,11 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	dependencies = {
-		{ "nvim-treesitter/nvim-treesitter-textobjects" }
+		{ "nvim-treesitter/nvim-treesitter-textobjects" },
 	},
 	config = function()
 		---@diagnostic disable-next-line: missing-fields
-		require 'nvim-treesitter.configs'.setup {
+		require("nvim-treesitter.configs").setup({
 			ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "go" },
 			auto_install = true,
 			highlight = {
@@ -24,7 +24,7 @@ return {
 			},
 
 			---@diagnostic disable-next-line: missing-fields
-			require 'nvim-treesitter.configs'.setup {
+			require("nvim-treesitter.configs").setup({
 				incremental_selection = {
 					enable = true,
 					keymaps = {
@@ -34,10 +34,10 @@ return {
 						node_decremental = "<leader>sd",
 					},
 				},
-			},
+			}),
 
 			---@diagnostic disable-next-line: missing-fields
-			require 'nvim-treesitter.configs'.setup {
+			require("nvim-treesitter.configs").setup({
 				textobjects = {
 					select = {
 						enable = true,
@@ -53,14 +53,14 @@ return {
 							["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
 						},
 						selection_modes = {
-							['@parameter.outer'] = 'v', -- charwise
-							['@function.outer'] = 'V', -- linewise
-							['@class.outer'] = '<c-v>', -- blockwise
+							["@parameter.outer"] = "v", -- charwise
+							["@function.outer"] = "V", -- linewise
+							["@class.outer"] = "<c-v>", -- blockwise
 						},
 						include_surrounding_whitespace = true,
 					},
 				},
-			}
-		}
-	end
+			}),
+		})
+	end,
 }
