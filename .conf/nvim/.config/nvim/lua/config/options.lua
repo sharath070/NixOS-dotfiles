@@ -8,9 +8,9 @@ vim.g.have_nerd_font = true
 local set = vim.opt
 
 set.expandtab = true
-set.tabstop = 4
-set.softtabstop = 4
-set.shiftwidth = 4
+set.tabstop = 2
+set.softtabstop = 2
+set.shiftwidth = 2
 set.autoindent = true
 
 set.number = true
@@ -73,5 +73,3 @@ vim.api.nvim_create_autocmd("textyankpost", {
     vim.highlight.on_yank()
   end,
 })
-vim.opt.list = true
-vim.opt.listchars = { tab = "→ ", space = "·" }
