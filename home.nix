@@ -28,10 +28,12 @@
   # environment.
   home.packages = with pkgs; [
     starship
-	lua-language-server
-	stylua
-	gopls
-	gotools
+    lua-language-server
+    stylua
+    gopls
+    gotools
+    typescript-language-server
+    nodePackages.prettier
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -68,9 +68,9 @@
     packages =
       (with pkgs; [
         go
-		vscode-fhs
+        vscode-fhs
         nodejs
-		ghostty
+        ghostty
         tmux
         unzip
         lsd
@@ -78,7 +78,7 @@
         nwg-look
         rofi-wayland
         waybar
-		mpv
+        mpv
         hyprlock
         hyprshot
         swww
