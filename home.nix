@@ -33,7 +33,7 @@
     gopls
     gotools
     typescript-language-server
-    nodePackages.prettier
+    prettierd
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

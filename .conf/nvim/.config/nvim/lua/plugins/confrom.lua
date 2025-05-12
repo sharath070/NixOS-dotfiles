@@ -13,7 +13,8 @@ return {
 			},
 			formatters = {
 				prettier = {
-					prepend_args = { "--tab-width", "2" },
+					-- This ensures project config files like .prettierrc are respected
+					prepend_args = { "--config-precedence", "prefer-file" },
 				},
 			},
 			format_on_save = { async = false, timeout_ms = 10000 },
