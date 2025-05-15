@@ -29,24 +29,4 @@ vim.keymap.set("n", "<c-k>", "<c-w><c-k>", { desc = "move focus to the upper win
 -- vim.keymap.set("n", "<c-s-k>", "<c-w>k", { desc = "move window to the upper" })
 
 vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<cr>", { desc = "Dismiss noice notifications" })
-
--- -- bordered lsp docs and signature_help
--- local _border = "rounded"
--- local opts = { noremap = true, silent = true }
---
--- local function bordered_hover(_opts)
--- 	_opts = _opts or {}
--- 	return vim.lsp.buf.hover(vim.tbl_deep_extend("force", _opts, {
--- 		border = _border
--- 	}))
--- end
---
--- local function bordered_signature_help(_opts)
--- 	_opts = _opts or {}
--- 	return vim.lsp.buf.signature_help(vim.tbl_deep_extend("force", _opts, {
--- 		border = _border
--- 	}))
--- end
---
--- vim.keymap.set("n", "K", bordered_hover, opts)
--- vim.keymap.set("i", "<C-k>", bordered_signature_help, opts)
+vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { noremap = true, silent = true })

@@ -32,6 +32,7 @@
     stylua
     gopls
     gotools
+    gofumpt
     typescript-language-server
     prettierd
   ];
