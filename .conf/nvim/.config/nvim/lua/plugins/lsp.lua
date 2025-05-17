@@ -29,12 +29,7 @@ return {
 		})
 
 		lspconfig.gopls.setup({})
-
 		lspconfig.ts_ls.setup({})
-
-		vim.diagnostic.config({
-			float = { border = "rounded" },
-		})
 
 		require("lspconfig.ui.windows").default_options.border = "rounded"
 	end,

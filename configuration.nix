@@ -72,6 +72,7 @@
         nodejs
         ghostty
         tmux
+        lazygit
         unzip
         lsd
         fzf
@@ -105,7 +106,7 @@
         htop
         mediawriter
         brave
-        inputs.zen-browser.packages."${system}".beta
+        inputs.zen-browser.packages."${system}".default
       ])
       ++ (with pkgs-stable; [
         ]);

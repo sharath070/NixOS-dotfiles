@@ -33,8 +33,10 @@
     gopls
     gotools
     gofumpt
+    gomodifytags
     typescript-language-server
     prettierd
+    eslint_d
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -1,9 +1,11 @@
-vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr><esc>")
-vim.keymap.set("n", "<leader>w", "<cmd>w!<cr>")
-vim.keymap.set("n", "<leader>q", "<cmd>q<cr>")
+local map = vim.keymap.set
+
+map("n", "<esc>", "<cmd>nohlsearch<cr><esc>")
+map("n", "<leader>w", "<cmd>w!<cr>")
+map("n", "<leader>q", "<cmd>q<cr>")
 
 -- diagnostic keymaps
--- vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { desc = 'open diagnostic [q]uickfix list' })
+-- map('n', '<leader>d', vim.diagnostic.setloclist, { desc = 'open diagnostic [q]uickfix list' })
 
 -- exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. otherwise, you normally need to press <c-\><c-n>, which
@@ -11,22 +13,43 @@ vim.keymap.set("n", "<leader>q", "<cmd>q<cr>")
 --
 -- note: this won't work in all terminal emulators/tmux/etc. try your own mapping
 -- or just use <c-\><c-n> to exit terminal mode
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "exit terminal mode" })
+map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "exit terminal mode" })
 
 -- keybinds to make split navigation easier.
 --  use ctrl+<hjkl> to switch between windows
 --
 --  see `:help wincmd` for a list of all window commands
-vim.keymap.set("n", "<c-h>", "<c-w><c-h>", { desc = "move focus to the left window" })
-vim.keymap.set("n", "<c-l>", "<c-w><c-l>", { desc = "move focus to the right window" })
-vim.keymap.set("n", "<c-j>", "<c-w><c-j>", { desc = "move focus to the lower window" })
-vim.keymap.set("n", "<c-k>", "<c-w><c-k>", { desc = "move focus to the upper window" })
+map("n", "<c-h>", "<c-w><c-h>", { desc = "move focus to the left window" })
+map("n", "<c-l>", "<c-w><c-l>", { desc = "move focus to the right window" })
+map("n", "<c-j>", "<c-w><c-j>", { desc = "move focus to the lower window" })
+map("n", "<c-k>", "<c-w><c-k>", { desc = "move focus to the upper window" })
 
 -- note: some terminals have colliding keymaps or are not able to send distinct keycodes
--- vim.keymap.set("n", "<c-s-h>", "<c-w>h", { desc = "move window to the left" })
--- vim.keymap.set("n", "<c-s-l>", "<c-w>l", { desc = "move window to the right" })
--- vim.keymap.set("n", "<c-s-j>", "<c-w>j", { desc = "move window to the lower" })
--- vim.keymap.set("n", "<c-s-k>", "<c-w>k", { desc = "move window to the upper" })
+-- map("n", "<c-s-h>", "<c-w>h", { desc = "move window to the left" })
+-- map("n", "<c-s-l>", "<c-w>l", { desc = "move window to the right" })
+-- map("n", "<c-s-j>", "<c-w>j", { desc = "move window to the lower" })
+-- map("n", "<c-s-k>", "<c-w>k", { desc = "move window to the upper" })
 
-vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<cr>", { desc = "Dismiss noice notifications" })
-vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { noremap = true, silent = true })
+map("n", "<leader>nd", "<cmd>NoiceDismiss<cr>", { desc = "Dismiss noice notifications" })
+map("i", "<C-k>", vim.lsp.buf.signature_help, { noremap = true, silent = true })
+
+map("n", "L", "<cmd>bnext<CR>", { noremap = true, silent = true }) -- Go to next buffer
+map("n", "H", "<cmd>bprevious<CR>", { noremap = true, silent = true }) -- Go to previous buffer
+map("n", "<C-x>", "<cmd>bd<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local bufnr = args.buf
+		local opts = { noremap = true, silent = true, buffer = bufnr }
+
+		map("n", "gd", vim.lsp.buf.definition, opts)
+		map("n", "gt", vim.lsp.buf.type_definition, opts)
+		map("n", "K", vim.lsp.buf.hover, opts)
+		map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+		map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+		map("n", "[d", vim.diagnostic.goto_prev, opts)
+		map("n", "]d", vim.diagnostic.goto_next, opts)
+
+		map("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+	end,
+})

@@ -75,13 +75,28 @@ vim.api.nvim_create_autocmd("textyankpost", {
 })
 
 vim.diagnostic.config({
-	virtual_text = true,
+	virtual_text = {
+		prefix = " ●", -- Could be "●", "■", "▎", or even an emoji
+		spacing = 4,
+	},
 	signs = true,
 	underline = true,
 	float = {
 		border = "rounded",
 	},
 })
+
+local signs = {
+	Error = " ",
+	Warn = " ",
+	Hint = " ",
+	Info = " ",
+}
+
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 -- Set default LSP floating window border style
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
