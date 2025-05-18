@@ -70,9 +70,6 @@
   #
   #  /etc/profiles/per-user/sharath/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
 
   programs.git = {
     enable = true;
@@ -81,6 +78,20 @@
     extraConfig = {
       init.defaultBranch = "main";
     };
+  };
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    NIXOS_OZONE_WL = "1"; # For Wayland support
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    GDK_BACKEND = "wayland";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    TERMINAL = "ghostty";
   };
 
   # gtk = {
