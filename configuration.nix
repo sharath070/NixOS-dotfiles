@@ -65,6 +65,7 @@
         lazygit
         unzip
         lsd
+        tealdeer
         fzf
         nwg-look
         rofi-wayland
@@ -78,8 +79,9 @@
         wl-clip-persist
         swaynotificationcenter
         fastfetch
+        wf-recorder
         nerdfetch
-        disfetch
+        ffmpeg
         qbittorrent
         xfce.thunar
         gedit
@@ -238,6 +240,14 @@
     };
   };
 
+  networking = {
+    hostName = "nixos"; # feel free to change it
+    networkmanager.enable = true;
+    wireless.enable = false; # because we use NetworkManager for wifi
+    networkmanager.wifi.backend = "wpa_supplicant";
+    # firewall.allowedTCPPorts = [ 5900 ];  # optional - only if you need to open a port
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -250,14 +260,6 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
-  networking = {
-    hostName = "nixos"; # feel free to change it
-    networkmanager.enable = true;
-    wireless.enable = false; # because we use NetworkManager for wifi
-    networkmanager.wifi.backend = "wpa_supplicant";
-    # firewall.allowedTCPPorts = [ 5900 ];  # optional - only if you need to open a port
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

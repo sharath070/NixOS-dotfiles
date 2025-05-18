@@ -34,6 +34,9 @@
     gotools
     gofumpt
     gomodifytags
+    air
+    sqlc
+    goose
     typescript-language-server
     prettierd
     eslint_d
