@@ -46,37 +46,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local bufnr = args.buf
 		local opts = { noremap = true, silent = true, buffer = bufnr }
 
-		map("n", "gd", vim.lsp.buf.definition, opts)
-		map("n", "gt", vim.lsp.buf.type_definition, opts)
+		map("n", "<leader>gd", vim.lsp.buf.definition, opts)
+		map("n", "<leader>gt", vim.lsp.buf.type_definition, opts)
 		map("n", "K", vim.lsp.buf.hover, opts)
 		map("n", "<leader>rn", vim.lsp.buf.rename, opts)
 		map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-		map("n", "[d", vim.diagnostic.goto_prev, opts)
-		map("n", "]d", vim.diagnostic.goto_next, opts)
+		map("n", "[d", function()
+			vim.diagnostic.jump({ count = -1 })
+		end, opts)
+		map("n", "]d", function()
+			vim.diagnostic.jump({})
+		end, opts)
 
 		map("n", "gi", "<cmd>Telescope lsp_references<CR>", opts)
 	end,
 })
-
-vim.keymap.set("n", "<leader>tt", function()
-	-- Check if a pane with "nvim-terminal" is already running
-	local handle = io.popen("tmux list-panes -F '#{pane_title}' | grep -c nvim-terminal")
-	local exists = tonumber(handle:read("*a"))
-	handle:close()
-
-	if exists == 0 then
-		-- Create a 20% horizontal split pane and set its title to 'nvim-terminal'
-		os.execute(
-			"tmux split-window -v -p 20 -c '#{pane_current_path}' -P -F '#{pane_id}' \\; select-pane -T nvim-terminal"
-		)
-	else
-		-- Kill the specific pane with title 'nvim-terminal'
-		local kill_cmd = [[
-      tmux list-panes -F "#{pane_id} #{pane_title}" \
-      | grep nvim-terminal \
-      | awk '{print $1}' \
-      | xargs -I{} tmux kill-pane -t {}
-    ]]
-		os.execute(kill_cmd)
-	end
-end)

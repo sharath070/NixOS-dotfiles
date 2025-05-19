@@ -66,6 +66,8 @@
         unzip
         lsd
         tealdeer
+        hurl
+        jq
         fzf
         nwg-look
         rofi-wayland
