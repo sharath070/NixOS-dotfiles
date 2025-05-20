@@ -2,7 +2,7 @@ local map = vim.keymap.set
 
 map("n", "<esc>", "<cmd>nohlsearch<cr><esc>")
 map("n", "<leader>w", "<cmd>w!<cr>")
-map("n", "<leader>W", "<cmd>wa<cr>")
+map("n", "<C-s>", "<cmd>wa<cr>")
 map("n", "<leader>q", "<cmd>q<cr>")
 
 map("n", "<C-j>", "<cmd>cnext<CR>zz")
