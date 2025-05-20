@@ -6,7 +6,8 @@ local i = ls.insert_node
 ls.add_snippets("go", {
 	s("ier", {
 		t({ "if err != nil {", "\treturn " }),
-		i(1, "err"),
+		i(1),
+		t(" err"),
 		t({ "", "}" }),
 	}),
 })
