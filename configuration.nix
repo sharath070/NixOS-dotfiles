@@ -85,7 +85,7 @@
         nerdfetch
         ffmpeg
         qbittorrent
-        xfce.thunar
+        yazi
         gedit
         networkmanagerapplet
         brightnessctl
@@ -240,6 +240,13 @@
         '';
       };
     };
+  };
+
+
+  fileSystems."/home/sharath/.drive" = {
+    device = "/dev/disk/by-uuid/103b5514-438a-44e3-8e50-9c230f8d496d";
+    fsType = "ext4";
+    options = [ "defaults" ];
   };
 
   networking = {
