@@ -1,152 +1,244 @@
-// Config //
+
+/* ---- Configuration ---- */
+
 configuration {
-    modi:                        "drun,filebrowser,window,run";
-    show-icons:                  true;
-    display-drun:                "";
-    display-run:                 " ";
-    display-filebrowser:         " ";
-    display-window:              " ";
-    drun-display-format:         "{name}";
-    window-format:               "{w}{t}";
-    font:                        "JetBrainsMono Nerd Font 10";
-    icon-theme:                  "Tela-circle-dracula";
+    modi:                       "drun,filebrowser,window";
+    font:                       "Fira Code SemiBold 12";
+    show-icons:                 true;
+    display-drun:               "";
+    display-run:                "";
+    display-filebrowser:        "";
+    display-window:             "";
+	  drun-display-format:        "{name}";
+    hover-select:               true;
+    me-select-entry:            "MouseSecondary";
+    me-accept-entry:            "MousePrimary";
+    window-format:              "{w}{t}";
+	  font:                       "JetBrainsMono Nerd Font 10";
+    icon-theme:                 "Tela-circle-dracula";
+    
 }
 
-@theme "~/.config/rofi/theme.rasi"
+/* ---- Load pywal colors (custom wal template) ---- */
+@import "~/.config/rofi/theme.rasi"
+@import "~/.config/rofi/rofi-vars.rasi"
 
 
-// Main //
+/* ---- Window ---- */
 window {
-    height:                      35em;
-    width:                       56em;
-    transparency:                "real";
-    fullscreen:                  false;
-    enabled:                     true;
-    cursor:                      "default";
-    spacing:                     0em;
-    padding:                     0em;
-    border-color:                @main-br;
-    background-color:            @main-bg;
-    border:                      1px;
-    border-radius:               1.2em;
+    width:						          900px;
+	  height:						          450px;
+    x-offset:                   0px;
+    y-offset:                   0px;
+    spacing:                    0px;
+    padding:                    0px;
+    margin:                     0px; 
+    border:                     1px;
+    border-color:               @main-br;
+    cursor:                     "default";
+    location:                   center;
+    anchor:                     center;
+    fullscreen:                 false;
+    enabled:                    true;
+    border-radius:              1.3em;
+    background-image:           url("~/.dotfiles/.conf/Pictures/tokyonight/street-tn.png", height);
 }
+
+/* ---- Mainbox ---- */
 mainbox {
-    enabled:                     true;
-    spacing:                     0em;
-    padding:                     0em;
-    orientation:                 vertical;
-    children:                    [ "inputbar" , "listbox" ];
-    background-color:            transparent;
-    background-image:            url("~/Pictures/wallpaper.png", height);
+    enabled:                    true;
+    orientation:                vertical;
+	  padding:					          0px;
+    background-color:           transparent;
+    children:                   [ "imagebox" ];
+    border-radius:              10px;
 }
 
-
-// Inputs //
-inputbar {
-    enabled:                     true;
-    spacing:                     0em;
-    padding:                     5em;
-    children:                    [ "entry" ];
-    background-color:            transparent;
-    background-image:            url("~/Picture/wallpaper.png", width);
-}
-entry {
-    border-radius:               2em;
-    enabled:                     true;
-    spacing:                     1em;
-    padding:                     1em;
-    text-color:                  @main-fg;
-    background-color:            @main-bg;
+/* ---- Imagebox ---- */
+imagebox {
+    background-color:           transparent;
+    orientation:                horizontal;
+    padding:                    10px;
+    children:                   [ "mode-switcher",  "dummy", "listbox"];
 }
 
-
-// Lists //
+/* ---- Listbox ---- */
 listbox {
-    padding:                     0em;
-    spacing:                     0em;
-    orientation:                 horizontal;
-    children:                    [ "listview" , "mode-switcher" ];
-    background-color:            @main-bg;
-}
-listview {
-    padding:                     1.5em;
-    spacing:                     0.5em;
-    enabled:                     true;
-    columns:                     2;
-    lines:                       3;
-    cycle:                       true;
-    dynamic:                     true;
-    scrollbar:                   false;
-    layout:                      vertical;
-    reverse:                     false;
-    fixed-height:                true;
-    fixed-columns:               true;
-    cursor:                      "default";
-    background-color:            transparent;
-    text-color:                  @main-fg;
+    spacing:                    10px;
+    orientation:                vertical;
+    border-color:               @active-background;
+	  background-color:		        transparent;
+    children:                   [ "inputbar", "listview" ];
 }
 
-
-// Modes //
-mode-switcher {
-    orientation:                 vertical;
-    width:                       6.6em;
-    enabled:                     true;
-    padding:                     1.5em;
-    spacing:                     1.5em;
-    background-color:            transparent;
+/* ---- Dummy ---- */
+dummy {
+    background-color:           transparent;
 }
+
+/* ---- Inputbar ---- */
+inputbar {
+    enabled:                    true;
+    text-color:                 @foreground;
+    spacing:                    10px;
+    border-radius:              @radius-second;
+	  background-color:		        @background;
+    children:                   [ "textbox-prompt-colon","entry" ];
+}
+
+textbox-prompt-colon {
+    enabled:                    true;
+	  padding:					          10px;
+    expand:                     false;
+    str:                        "";
+    text-color:                 inherit;
+	  background-color:			      transparent;
+}
+
+entry {
+    enabled:                    true;
+	  padding:					          10px;
+    text-color:                 inherit;
+    cursor:                     text;
+    placeholder:                "Search..";
+    placeholder-color:          inherit;
+	  background-color:			      transparent;
+}
+
+/* ---- Mode Switcher ---- */
+mode-switcher{
+    orientation:				        vertical;
+    width:                      40px;
+    enabled:                    true;
+    spacing:                    20px;
+    background-color:          	transparent;
+    text-color:                 @foreground;
+}
+
 button {
-    cursor:                      pointer;
-    border-radius:               2em;
-    background-color:            @main-bg;
-    text-color:                  @main-fg;
+    padding:                   0px 12px 0px 8px;
+    border-radius:             @radius-second;
+    background-color:          @background;
+    text-color:                inherit;
+    cursor:                    pointer;
+    border:                    1px;
+    border-color:              @active-background;
+    border-radius:             20px;
 }
+
 button selected {
-    background-color:            @main-fg;
-    text-color:                  @main-bg;
+    background-color:          @selected-normal-background;
+    text-color:                @foreground;
+    border:                    1px;
+    border-color:              @background;
+	
 }
 
+/* ---- Listview ---- */
+listview {
+	enabled:					          true;
+	columns:					          1;
+	lines:						          5;
+	spacing:                    2px;
+	padding:					          6px;
+	dynamic:                    true;
+	cycle:                      true;
+	scrollbar:                  false;
+	layout:                     vertical;
+	reverse:                    false;
+	fixed-height:               true;
+	fixed-columns:              false;
+	background-color:           @background;
+	border-radius:   	          10px;
+}
 
-// Elements //
+/* ---- Element ---- */
 element {
-    enabled:                     true;
-    spacing:                     0em;
-    padding:                     0.5em;
-    cursor:                      pointer;
-    background-color:            transparent;
-    text-color:                  @main-fg;
-}
-element selected.normal {
-    background-color:            @select-bg;
-    text-color:                  @select-fg;
-    border-radius:               0.4em;
-}
-element-icon {
-    size:                        3em;
-    cursor:                      inherit;
-    background-color:            transparent;
-    text-color:                  inherit;
-}
-element-text {
-    vertical-align:              0.5;
-    horizontal-align:            0.0;
-    cursor:                      inherit;
-    background-color:            transparent;
-    text-color:                  inherit;
+    enabled:                    true;
+    padding:                    5px;
+    margin:                     2px;
+    cursor:                     pointer;
+    background-color:         	transparent;
+    border-radius:              15px;
+    border:                     0px;
 }
 
-// Error message //
-error-message {
-    text-color:                  @main-fg;
-    background-color:            @main-bg;
-    text-transform:              capitalize;
-    children:                    [ "textbox" ];
+element normal.normal {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element normal.urgent {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element normal.active {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element selected.normal {
+    background-color:           @selected-normal-background;
+    text-color:                 @foreground;
+}
+
+element selected.urgent {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element selected.active {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element alternate.normal {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element alternate.urgent {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element alternate.active {
+    background-color:           inherit;
+    text-color:                 @foreground;
+}
+
+element-icon {
+    background-color:           transparent;
+    text-color:                 inherit;
+    size:                       50px;
+    cursor:                     inherit;
+}
+
+element-text {
+    background-color:           transparent;
+    text-color:                 inherit;
+    cursor:                     inherit;
+    vertical-align:             0.5;
+    horizontal-align:           0;
+}
+
+/*****----- Message -----*****/
+message {
+    background-color:           @background;
+    margin:						20px 0px 0px 0px;
+    border-radius: 				12px;
 }
 
 textbox {
-    text-color:                  inherit;
-    background-color:            inherit;
-    vertical-align:              0.5;
-    horizontal-align:            0.5;
+    padding:                    10px;
+    background-color:      		  @background;
+    text-color:                 @foreground;
+}
+
+error-message {
+    padding:                    15px;
+    border-radius:            	12px;
+    background-color:      		  @background;
+    text-color:                 @foreground;
 }

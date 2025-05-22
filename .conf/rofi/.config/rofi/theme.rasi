@@ -8,4 +8,6 @@
     separatorcolor:     transparent;
    /* border-color:       transparent;
    */
+   background:          #16161Ee6;
+   foreground:            #D5D6DB;
 }
