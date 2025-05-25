@@ -36,14 +36,25 @@
   };
 
   services.xserver.enable = false;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    enableHidpi = true;
+    package = pkgs.kdePackages.sddm;
+    theme = "sddm-astronaut-theme";
+    #settings.Theme.CursorTheme = "Bibata-Modern-Classic";
+    extraPackages = with pkgs; [
+      kdePackages.qtmultimedia
+      kdePackages.qtsvg
+      kdePackages.qtvirtualkeyboard
+    ];
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
-
-  services.displayManager.sddm.enable = false;
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
@@ -84,6 +95,7 @@
         wf-recorder
         nerdfetch
         ffmpeg
+        libnotify
         qbittorrent
         yazi
         gedit
@@ -123,6 +135,7 @@
       home-manager
       ripgrep
       xdg-user-dirs
+      (callPackage ./sddm-theme.nix {theme = "purple_leaves";})
     ])
     ++ (with pkgs-stable; [
       ]);
@@ -152,8 +165,12 @@
     };
   };
 
-  fonts.packages = with pkgs-stable; [
-    nerdfonts
+  fonts.packages = with pkgs; [
+    fira-code
+    jetbrains-mono
+    nerd-fonts.jetbrains-mono
+    d2coding
+    font-awesome
   ];
 
   programs.hyprland.enable = true;
@@ -242,11 +259,12 @@
     };
   };
 
+  services.power-profiles-daemon.enable = true;
 
   fileSystems."/home/sharath/.drive" = {
     device = "/dev/disk/by-uuid/103b5514-438a-44e3-8e50-9c230f8d496d";
     fsType = "ext4";
-    options = [ "defaults" ];
+    options = ["defaults"];
   };
 
   networking = {

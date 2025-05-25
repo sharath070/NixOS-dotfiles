@@ -2,57 +2,66 @@
   "$schema": "/etc/xdg/swaync/configSchema.json",
   "positionX": "right",
   "positionY": "top",
-  "layer": "overlay",
-  "control-center-layer": "top",
-  "layer-shell": true,
-  "cssPriority": "application",
+  "cssPriority": "user",
 
   "control-center-width": 330,
   "control-center-height": 650,
-  "control-center-margin-top": 5,
+  "control-center-margin-top": 2,
   "control-center-margin-bottom": 2,
-  "control-center-margin-right": 5,
+  "control-center-margin-right": 1,
   "control-center-margin-left": 0,
 
-  "notification-2fa-action": true,
-  "notification-inline-replies": true,
   "notification-window-width": 400,
-  "notification-icon-size": 30,
-  "notification-body-image-height": 30,
+  "notification-icon-size": 48,
+  "notification-body-image-height": 160,
   "notification-body-image-width": 200,
 
-  "timeout": 3,
-  "timeout-low": 3,
-  "timeout-critical": 0,
+  "timeout": 4,
+  "timeout-low": 2,
+  "timeout-critical": 6,
+
   "fit-to-screen": false,
   "keyboard-shortcuts": true,
-  "image-visibility": "when available",
+  "image-visibility": "when-available",
   "transition-time": 200,
   "hide-on-clear": false,
-  "hide-on-action": true,
+  "hide-on-action": false,
   "script-fail-notify": true,
-  "widgets": ["dnd", "mpris", "buttons-grid"],
+  "scripts": {
+    "example-script": {
+      "exec": "echo 'Do something...'",
+      "urgency": "Normal"
+    }
+  },
+  "notification-visibility": {
+    "example-name": {
+      "state": "muted",
+      "urgency": "Low",
+      "app-name": "Spotify"
+    }
+  },
+  "widgets": ["buttons-grid", "mpris", "title", "dnd", "notifications"],
   "widget-config": {
     "title": {
-      "text": "",
+      "text": "Notifications",
       "clear-all-button": true,
-      "button-text": "-"
+      "button-text": " 󰎟 "
     },
     "dnd": {
-      "text": "Do Not Disturb"
-    },
-    "label": {
-      "max-lines": 3,
-      "text": "Notification"
+      "text": "Do not disturb"
     },
     "mpris": {
-      "image-size": 30,
-      "image-radius": 10
+      "image-size": 40,
+      "image-radius": 12
+    },
+    "volume": {
+      "label": "󰕾",
+      "show-per-app": true
     },
     "buttons-grid": {
       "actions": [
         {
-          "label": "󰕾",
+          "label": " ",
           "command": "pavucontrol"
         },
         {
@@ -60,12 +69,13 @@
           "command": "blueman-manager"
         },
         {
-          "label": "󱛎",
+          "label": " ",
           "command": "nm-connection-editor"
         },
         {
-          "label": "󰐥",
-          "command": "wlogout -b 2 --protocol layer-shell"
+          "label": "󰾅",
+          "command": "~/.config/hypr/scripts/pwrProfiles.sh toggle",
+          "type": "command"
         }
       ]
     }

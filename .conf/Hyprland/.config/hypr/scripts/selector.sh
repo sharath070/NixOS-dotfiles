@@ -1,11 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-scripts_dir="$HOME/.config/hypr/scripts"
-wallDIR="$HOME/.local/wallpapers/tokyonight"
-# cache_dir="$HOME/.config/hypr/.cache"
-# wallCache="$cache_dir/.wallpaper"
-
-# [[ ! -f "$wallCache" ]] && touch "$wallCache"
+wallDIR="$HOME/.dotfiles/.conf/Pictures/tokyonight"
+cache_dir="$HOME/.config/hypr/.cache"
+themes_dir="$HOME/.config/hypr/.cache/colors"
 
 # Transition config
 FPS=60
@@ -20,7 +17,6 @@ PICS=($(ls "${wallDIR}" | grep -E ".jpg$|.jpeg$|.png$|.gif$"))
 
 # Rofi command ( style )
 rofi_command1="rofi -show -dmenu -config ~/.config/rofi/rofi-wall.rasi"
-rofi_command2="rofi -show -dmenu -config ~/.config/rofi/rofi-wall-2.rasi"
 
 menu() {
   for i in "${!PICS[@]}"; do
@@ -31,8 +27,8 @@ menu() {
       printf "${PICS[$i]}\n"
     fi
   done
-}
 
+}
 
 choice=$(menu | ${rofi_command1})
 
@@ -42,7 +38,6 @@ swww query || swww init
 if [[ -z $choice ]]; then
   exit 0
 fi
-
 
 # Find the index of the selected file
 pic_index=-1
@@ -60,9 +55,6 @@ if [[ $pic_index -ne -1 ]]; then
 
     ln -sf "${wallDIR}/${PICS[$pic_index]}" "$cache_dir/current_wallpaper.png"
     basename="$(basename "${wallDIR}/${PICS[$pic_index]}")"
-    wallName="${basename%.*}"
-    echo "$wallName" > "$wallCache"
-    # wal -q -e -i "${wallDIR}/${PICS[$pic_index]}" || printf "\n\nCouls not generate any colors\n"
 
 else
     echo "Image not found."
@@ -70,5 +62,3 @@ else
 fi
 
 sleep 0.5
-"$scripts_dir/wallcache.sh"
-"$scripts_dir/pywal.sh"

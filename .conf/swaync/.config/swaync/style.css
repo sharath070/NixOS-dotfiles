@@ -1,247 +1,92 @@
-.control-center {
-  padding: 9px;
-  background: rgba(22, 22, 30, 0.9);
-  border-radius: 15px;
-  border: 2px solid #2ac3de;
-  margin: 2px;
+@define-color text            #D5D6DB;
+@define-color background-alt  #1A1B26;
+@define-color selected        #82aaff;
+@define-color hover           alpha(#B4F9F8, .5);
+@define-color border-sec      #2f3549;
+@define-color bg-sec          #444b6a;
+
+* {
+  color: @text;
+
+  all: unset;
+  font-size: 14px;
+  font-family: "JetBrains Mono Nerd Font 10";
+  transition: 200ms;
 }
 
-.control-center-list {
-  background: transparent;
-}
-
-.control-center-list-placeholder {
-  opacity: 0.8;
-}
-
-/* Window behind control center and on all other monitors */
+/* Avoid 'annoying' backgroud */
 .blank-window {
   background: transparent;
 }
 
-/*** Widgets ***/
+/* CONTROL CENTER ------------------------------------------------------------------------ */
 
-/* Title widget */
-.widget-title {
-  font-family: "JetBrains Mono Nerd Font";
-  font-weight: bold;
-  margin: 0px;
-  font-size: 2rem;
-}
-.widget-title > button {
-  font-size: initial;
-  color: white;
-  text-shadow: none;
-  background: #a1bdce;
-  border: 1px solid #04030a;
-  box-shadow: none;
-  border-radius: 12px;
-  padding: 2rem;
+.control-center {
+  background: alpha(#16161e, 0.8);
+  border-radius: 24px;
+  border: 1px solid @selected;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
+  margin: 12px;
+  padding: 12px;
 }
 
-/* DND widget */
-.widget-dnd {
-  margin: 8px;
-  font-size: 1.2rem;
-}
-.widget-dnd > switch {
-  font-size: initial;
-  border-radius: 14px;
-  background: #1a1b26;
-  border: 1px solid #2f3549;
-  box-shadow: none;
-}
-.widget-dnd > switch:checked {
-  background: #787c99;
-}
-.widget-dnd > switch slider {
-  background: #2f3549;
-  border-radius: 12px;
-}
-
-/* Label widget */
-/* .widget-label {
-  margin: 8px;
-}
-.widget-label > label {
-  font-size: 1.1rem;
-} */
-
-/* Mpris widget */
-.widget-mpris {
-  font-family: "JetBrains Mono Nerd Font";
-  /* The parent to all players */
-}
-.widget-mpris-player {
-  padding: 24px;
-  margin: 0px;
-  /* background-color: @mpris-album-art-overlay; */
-  border-radius: 20px;
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 1);
-}
-.widget-mpris-album-art {
-  border-radius: 12px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
-}
-.widget-mpris-player button:hover {
-  /* The media player buttons (play, pause, next, etc...) */
-  background: #444b6a;
-}
-.widget-mpris > box > button {
-  /* Change player side buttions */
-}
-.widget-mpris > box > button:disabled {
-  /* Change player side buttions insensitive */
-}
-.widget-mpris-title {
-  font-family: "JetBrains Mono Nerd Font";
-  font-weight: bold;
-  font-size: 1.25rem;
-}
-.widget-mpris-subtitle {
-  font-family: "JetBrains Mono Nerd Font";
-  font-size: 1.1rem;
-}
-/*imp1 */
-/* Buttons widget */
-.widget-buttons-grid {
-  /* height: 30px; */
-  font-size: 20px;
-  font-family: "JetBrains Mono Nerd Font";
-  padding-left: 5px;
-  margin-left: -7px;
-  margin-right: -7px;
-  border-radius: 20px;
-  background-color: transparent;
-}
-
-.widget-buttons-grid > flowbox > flowboxchild > button {
-  color: #a1bdce;
-  padding: 10px 15px 10px 15px;
-  background: #1a1b26;
-  border-radius: 10px;
-  border: 1px solid #2f3549;
-  transition: 0.5s ease;
-}
-
-.widget-buttons-grid > flowbox > flowboxchild > button:hover {
-  /* background: rgba(68, 75, 106, 0.2); */
-  /* padding: 13px 20px 13px 20px; */
-  box-shadow: 1px 1px 1px 1px #a1bdce;
-  color: #b4f9f8;
-}
-
-/* Menubar widget */
-.widget-menubar > box > .menu-button-bar > button {
-  border: none;
-  background: transparent;
-  background: red;
-}
-
-.topbar-buttons > button {
-  /* Name defined in config after # */
-  border: none;
-  background: transparent;
-  background: rgba(69, 133, 136, 1);
-}
-
-/* Volume widget */
-trough {
-  border-radius: 20px;
-  background: rgba(15, 15, 15, 1);
-  /*border: 3px solid #171717;*/
-  padding-right: 1px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 1px;
-}
-
-trough highlight {
-  /* ´trough´ is the background of the slider, ´highlight´ is the actual slider */
-  padding-top: 1px;
-  margin-left: -13px;
-  background: #49a0e6;
-  border: 0px solid #02080d;
-  border-radius: 20px 0px 0px 20px;
-}
-
-trough slider {
-  padding: 0px;
-  background: #49a0e6;
-  border: 0px solid #02080d;
-  margin-left: -10px;
-}
-trough slider:hover {
-  padding: 0px;
-  background: #ffffff;
-  border: 1px solid #02080d;
-}
-
-.widget-volume {
-  background-color: rgba(36, 36, 36, 0.5);
-  border-radius: 20px 20px 0px 0px;
-  font-size: 25px;
-  padding-left: 15px;
-  margin-left: -10px;
-  margin-right: -10px;
-  margin-top: -10px;
-  border: 0px solid #28282b;
-}
-
-.widget-backlight {
-  padding-left: 15px;
-  background-color: rgba(36, 36, 36, 0.5);
-  font-size: 25px;
-  margin-left: -10px;
-  margin-right: -10px;
-  margin-top: -8px;
-  border-radius: 0px 0px 20px 20px;
-  border: 0px solid #28282b;
-}
-
-/* Title widget */
-.widget-inhibitors {
-  margin: 8px;
-  font-size: 1.5rem;
-}
-.widget-inhibitors > button {
-  font-size: initial;
-  color: white;
-  text-shadow: none;
-  /* background: @noti-bg; */
-  /* border: 1px solid @noti-border-color; */
-  box-shadow: none;
-  border-radius: 12px;
-}
-.widget-inhibitors > button:hover {
-  /* background: @noti-bg-hover; */
-}
-
+/* Notifications  */
 .notification-row {
   outline: none;
   margin: 0px;
-  padding: 0px;
+}
+
+.notification-group {
+  margin: 2px 8px 2px 8px;
 }
 
 .notification {
-  font-family: "JetBrains Mono Nerd Font";
-  border: 2px solid #2f3549;
+  border: 2px solid @border-sec;
   border-radius: 12px;
-  background: #1a1b26;
+  background: @background-alt;
+  margin: 3px 6px 3px 4px;
+  padding: 7px 10px;
+}
+
+.floating-notifications .notification {
+  border: 2px solid @hover;
+  border-radius: 12px;
+  background: @background-alt;
+  margin: 12px;
+  padding: 7px 10px;
+}
+.notification .notification-content .summary {
+  font-weight: bold;
+  margin: 0px 4px;
+}
+.notification .notification-content .body {
+  margin: 0px 4px;
+}
+
+.notification:hover {
+  border: 2px solid @border-sec;
+  border-radius: 12px;
+  background: @bg-sec;
   margin: 3px 6px 3px 4px;
   padding-bottom: 10px;
 }
 
-.notification:hover {
-  border: 2px solid #2f3549;
-  border-radius: 12px;
-  background: #444b6a;
-  margin: 3px 6px 3px 4px;
-  padding-bottom: 10px;
+.notification-group-collapse-button,
+.notification-group-close-all-button {
+  background: transparent;
+  margin: 4px;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.notification-group-collapse-button:hover,
+.notification-group-close-all-button:hover {
+  background: @hover;
 }
 
 .notification-content {
   background: transparent;
+  /* gap: 4px; */
 }
 
 .notification-default-action {
@@ -261,20 +106,19 @@ trough slider:hover {
 
 .close-button:hover {
   box-shadow: none;
-  background: #444b6a;
+  background: @hover;
   transition: all 0.15s ease-in-out;
   border: none;
 }
 
 .notification-action {
-  border: 2px solid #444b6a;
+  border: 2px solid @bg-sec;
   border-top: none;
   border-radius: 0px;
 }
 
 .notification-default-action:hover,
 .notification-action:hover {
-  color: #7aa2f7;
   background: rgba(68, 75, 106, 0.2);
 }
 
@@ -296,4 +140,128 @@ trough slider:hover {
 .notification-action:last-child {
   border-bottom-right-radius: 10px;
   background: rgba(21, 21, 21, 0.8);
+}
+
+/* WIDGETS --------------------------------------------------------------------------- */
+
+/* Notification clear button */
+.widget-title {
+  font-size: 1.2em;
+}
+
+.widget-title button {
+  background: @background-alt;
+  border-radius: 6px;
+  padding: 4px 16px;
+}
+
+.widget-title button:hover {
+  background-color: @hover;
+}
+
+.widget-title button:active {
+  background-color: @selected;
+}
+
+/* Do not disturb */
+.widget-dnd {
+  margin: 6px;
+  font-size: 1.2rem;
+}
+
+.widget-dnd > switch {
+  background: @background-alt;
+  font-size: initial;
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 2px;
+}
+
+.widget-dnd > switch:hover {
+  background: @hover;
+}
+
+.widget-dnd > switch:checked {
+  /* background: @selected; */
+}
+
+.widget-dnd > switch:checked:hover {
+  background: @hover;
+}
+
+.widget-dnd > switch slider {
+  background: @text;
+  border-radius: 6px;
+}
+
+/* Buttons menu */
+.widget-buttons-grid {
+  font-size: x-large;
+  padding: 6px 2px;
+  margin: 6px;
+  border-radius: 12px;
+  border: 1px solid alpha(@bg-sec, 0.8);
+  background: @background-alt;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  margin: 4px 10px;
+  padding: 6px 12px;
+  background: transparent;
+  border-radius: 8px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: @hover;
+}
+
+/* Music player */
+.widget-mpris {
+  background: transparent;
+  border-radius: 16px;
+  color: @text;
+  margin: 20px 6px;
+}
+
+/* NOTE: Background need *opacity 1* otherwise will turn into the album art blurred  */
+.widget-mpris-player {
+  background-color: @background-sec;
+  border-radius: 22px;
+  padding: 6px 14px;
+}
+
+.widget-mpris > box > button {
+  color: @text;
+  border-radius: 20px;
+}
+
+.widget-mpris button {
+  color: alpha(@text, 0.6);
+}
+
+.widget-mpris button:hover {
+  color: @text;
+}
+
+.widget-mpris-album-art {
+  border-radius: 16px;
+}
+
+.widget-mpris-title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.widget-mpris-subtitle {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+/* Volume */
+.widget-volume {
+  background: @background-sec;
+  color: @background;
+  padding: 4px;
+  margin: 6px;
+  border-radius: 6px;
 }

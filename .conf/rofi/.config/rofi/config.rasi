@@ -1,74 +1,77 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Main Config (main) */
 
 /* ---- Configuration ---- */
-
 configuration {
-    modi:                       "drun,filebrowser,window";
-    font:                       "Fira Code SemiBold 12";
+    modi:                       "drun,run,filebrowser";
+    font:                       "JetBrainsMono Nerd Font 10";
     show-icons:                 true;
-    display-drun:               "";
-    display-run:                "";
-    display-filebrowser:        "";
-    display-window:             "";
-	  drun-display-format:        "{name}";
+    display-drun:               "";
+	display-run:                "";
+    display-filebrowser:        "";
+    display-window:             "󱂬";
+	drun-display-format:        "{name}";
     hover-select:               true;
     me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
-    window-format:              "{w}{t}";
-	  font:                       "JetBrainsMono Nerd Font 10";
-    icon-theme:                 "Tela-circle-dracula";
+    window-format:              "{w} · {c} · {t}";
+	dpi:						1;
     
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
+@import "~/.config/rofi/pywal-color/pywal-theme.rasi"
 @import "~/.config/rofi/theme.rasi"
-@import "~/.config/rofi/rofi-vars.rasi"
-
 
 /* ---- Window ---- */
 window {
-    width:						          900px;
-	  height:						          450px;
+    width:						600px;
+	/*height:						450px;*/
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
-    padding:                    0px;
+    padding:                    1px;
     margin:                     0px; 
-    border:                     1px;
-    border-color:               @main-br;
+    border:                     2px;
     cursor:                     "default";
     location:                   center;
     anchor:                     center;
     fullscreen:                 false;
     enabled:                    true;
-    border-radius:              1.3em;
-    background-image:           url("~/.dotfiles/.conf/Pictures/tokyonight/street-tn.png", height);
+    border-radius:              12px;
+    border:                     1px;
+    border-color:               @main-br;
+    //background-image:           url("~/.config/hypr/.cache/current_wallpaper.png", height);
+    background-color:           @main-bg;
 }
 
 /* ---- Mainbox ---- */
 mainbox {
     enabled:                    true;
     orientation:                vertical;
-	  padding:					          0px;
+	padding:					8px;
     background-color:           transparent;
-    children:                   [ "imagebox" ];
-    border-radius:              10px;
+    children:                   [ "inputbar", "imagebox" ];
+    border-radius:              12px;
 }
 
 /* ---- Imagebox ---- */
 imagebox {
     background-color:           transparent;
     orientation:                horizontal;
-    padding:                    10px;
-    children:                   [ "mode-switcher",  "dummy", "listbox"];
+    children:                   [ "mode-switcher",  "listbox"];
 }
 
 /* ---- Listbox ---- */
 listbox {
-    spacing:                    10px;
+    spacing:                    4px;
     orientation:                vertical;
+    children:                   ["listview" ];
+	padding:					6px;
+    border-radius:              12px;
+    border:                     1px;
     border-color:               @active-background;
-	  background-color:		        transparent;
-    children:                   [ "inputbar", "listview" ];
+	background-color:		    @main-bg;
 }
 
 /* ---- Dummy ---- */
@@ -79,65 +82,67 @@ dummy {
 /* ---- Inputbar ---- */
 inputbar {
     enabled:                    true;
-    text-color:                 @foreground;
+    text-color:                 @main-fg;
     spacing:                    10px;
-    border-radius:              @radius-second;
-	  background-color:		        @background;
+    border-radius:              12px;
+    border-color:               @main-fg;
+	background-color:		    @main-bg;
     children:                   [ "textbox-prompt-colon","entry" ];
+    border:                     1px;
+    border-color:               @active-background;
 }
 
 textbox-prompt-colon {
     enabled:                    true;
-	  padding:					          10px;
+	padding:					6px 0px 6px 10px;
     expand:                     false;
-    str:                        "";
+    str:                           "🐧";
     text-color:                 inherit;
-	  background-color:			      transparent;
+	background-color:			transparent;
 }
 
 entry {
     enabled:                    true;
-	  padding:					          10px;
+	padding:					6px 0px 0px 0px;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Search..";
+    placeholder:                "Search (ctrl tab to choose mode)";
     placeholder-color:          inherit;
-	  background-color:			      transparent;
+	background-color:			transparent;
 }
 
 /* ---- Mode Switcher ---- */
 mode-switcher{
-    orientation:				        vertical;
-    width:                      40px;
+	orientation:				vertical;
     enabled:                    true;
-    spacing:                    20px;
+    spacing:                    12px;
+    padding:                    0px 5px 0px 0px;
     background-color:          	transparent;
-    text-color:                 @foreground;
+    text-color:                 @main-fg;
 }
 
 button {
     padding:                   0px 12px 0px 8px;
-    border-radius:             @radius-second;
-    background-color:          @background;
+    border-radius:             12px;
+    background-color:          @main-bg;
     text-color:                inherit;
     cursor:                    pointer;
-    border:                    1px;
-    border-color:              @active-background;
-    border-radius:             20px;
+    border:                     1px;
+    border-color:               @active-background;
 }
 
 button selected {
-    background-color:          @selected-normal-background;
-    text-color:                @foreground;
+    background-color:          @select-bg;
+    text-color:                @select-fg;
     border:                    1px;
-    border-color:              @background;
+    border-color:              @main-bg;
 	
 }
 
 /* ---- Listview ---- */
 listview {
 	enabled:					          true;
-	columns:					          1;
+	columns:					          2;
 	lines:						          5;
 	spacing:                    2px;
 	padding:					          6px;
@@ -148,8 +153,9 @@ listview {
 	reverse:                    false;
 	fixed-height:               true;
 	fixed-columns:              false;
-	background-color:           @background;
-	border-radius:   	          10px;
+	background-color:           transparent;
+	border-radius:   	          12px;
+	border:						          0px;
 }
 
 /* ---- Element ---- */
@@ -159,59 +165,59 @@ element {
     margin:                     2px;
     cursor:                     pointer;
     background-color:         	transparent;
-    border-radius:              15px;
+    border-radius:              12px;
     border:                     0px;
 }
 
 element normal.normal {
     background-color:           inherit;
-    text-color:                 @foreground;
+    text-color:                 @main-fg;
 }
 
 element normal.urgent {
     background-color:           inherit;
-    text-color:                 @foreground;
+    text-color:                 @main-fg;
 }
 
 element normal.active {
     background-color:           inherit;
-    text-color:                 @foreground;
+    text-color:                 @main-fg;
 }
 
 element selected.normal {
-    background-color:           @selected-normal-background;
-    text-color:                 @foreground;
+    background-color:           @select-bg;
+    text-color:                 @select-fg;
 }
 
 element selected.urgent {
     background-color:           inherit;
-    text-color:                 @foreground;
+    text-color:                 @main-fg;
 }
 
 element selected.active {
     background-color:           inherit;
-    text-color:                 @foreground;
+    text-color:                 @main-fg;
 }
 
 element alternate.normal {
     background-color:           inherit;
-    text-color:                 @foreground;
+    text-color:                 @main-fg;
 }
 
 element alternate.urgent {
     background-color:           inherit;
-    text-color:                 @foreground;
+    text-color:                 @main-fg;
 }
 
 element alternate.active {
     background-color:           inherit;
-    text-color:                 @foreground;
+    text-color:                 @main-fg;
 }
 
 element-icon {
     background-color:           transparent;
     text-color:                 inherit;
-    size:                       50px;
+    size:                       32px;
     cursor:                     inherit;
 }
 
@@ -225,20 +231,20 @@ element-text {
 
 /*****----- Message -----*****/
 message {
-    background-color:           @background;
-    margin:						20px 0px 0px 0px;
-    border-radius: 				12px;
+    background-color:           @main-bg;
+    margin:						          20px 0px 0px 0px;
+    border-radius: 				      12px;
 }
 
 textbox {
     padding:                    10px;
-    background-color:      		  @background;
-    text-color:                 @foreground;
+    background-color:      		  @main-bg;
+    text-color:                 @main-fg;
 }
 
 error-message {
     padding:                    15px;
     border-radius:            	12px;
-    background-color:      		  @background;
-    text-color:                 @foreground;
+    background-color:      		  @main-bg;
+    text-color:                 @main-fg;
 }
