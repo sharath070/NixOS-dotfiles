@@ -7,26 +7,24 @@ configuration {
     font:                       "JetBrainsMono Nerd Font 10";
     show-icons:                 true;
     display-drun:               "";
-	display-run:                "";
+	  display-run:                "";
     display-filebrowser:        "";
     display-window:             "󱂬";
-	drun-display-format:        "{name}";
+	  drun-display-format:        "{name}";
     hover-select:               true;
     me-select-entry:            "MouseSecondary";
     me-accept-entry:            "MousePrimary";
     window-format:              "{w} · {c} · {t}";
-	dpi:						1;
+	  dpi:						            1;
     
 }
 
-/* ---- Load pywal colors (custom wal template) ---- */
-@import "~/.config/rofi/pywal-color/pywal-theme.rasi"
 @import "~/.config/rofi/theme.rasi"
 
 /* ---- Window ---- */
 window {
-    width:						600px;
-	/*height:						450px;*/
+    width:						          600px;
+	/*height:						          450px;*/
     x-offset:                   0px;
     y-offset:                   0px;
     spacing:                    0px;
@@ -49,7 +47,7 @@ window {
 mainbox {
     enabled:                    true;
     orientation:                vertical;
-	padding:					8px;
+	  padding:					          8px;
     background-color:           transparent;
     children:                   [ "inputbar", "imagebox" ];
     border-radius:              12px;
@@ -67,11 +65,11 @@ listbox {
     spacing:                    4px;
     orientation:                vertical;
     children:                   ["listview" ];
-	padding:					6px;
+	  padding:					          6px;
     border-radius:              12px;
     border:                     1px;
     border-color:               @active-background;
-	background-color:		    @main-bg;
+	  background-color:		        @main-bg;
 }
 
 /* ---- Dummy ---- */
@@ -86,7 +84,7 @@ inputbar {
     spacing:                    10px;
     border-radius:              12px;
     border-color:               @main-fg;
-	background-color:		    @main-bg;
+	  background-color:		        @main-bg;
     children:                   [ "textbox-prompt-colon","entry" ];
     border:                     1px;
     border-color:               @active-background;
@@ -94,26 +92,26 @@ inputbar {
 
 textbox-prompt-colon {
     enabled:                    true;
-	padding:					6px 0px 6px 10px;
+	  padding:					          6px 0px 6px 10px;
     expand:                     false;
-    str:                           "🐧";
+    str:                        "🐧";
     text-color:                 inherit;
-	background-color:			transparent;
+	  background-color:			      transparent;
 }
 
 entry {
     enabled:                    true;
-	padding:					6px 0px 0px 0px;
+	  padding:					          6px 0px 0px 0px;
     text-color:                 inherit;
     cursor:                     text;
     placeholder:                "Search (ctrl tab to choose mode)";
     placeholder-color:          inherit;
-	background-color:			transparent;
+  	background-color:			      transparent;
 }
 
 /* ---- Mode Switcher ---- */
 mode-switcher{
-	orientation:				vertical;
+	  orientation:				        vertical;
     enabled:                    true;
     spacing:                    12px;
     padding:                    0px 5px 0px 0px;

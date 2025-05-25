@@ -169,6 +169,8 @@
     fira-code
     jetbrains-mono
     nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka
+    nerd-fonts.caskaydia-cove
     d2coding
     font-awesome
   ];

@@ -4,23 +4,25 @@ configuration {
     font:                  "JetBrainsMono Nerd Font 10";
     show-icons:            true;
     display-drun:          "";
-	display-run:           "";
+	  display-run:           "";
     display-filebrowser:   "";
     display-window:        "";
-	drun-display-format:   "{name}";
+	  drun-display-format:   "{name}";
     hover-select:          true;
     me-select-entry:       "MouseSecondary";
     me-accept-entry:       "MousePrimary";
     window-format:         "{w} · {c} · {t}";
-	dpi:					1;
+	  dpi:					          1;
     
 }
 
-/* ---- Load pywal colors (custom wal template) ---- */
-//@import "~/.config/rofi/rofi-colors.rasi"
-@import "~/.config/rofi/rofi-vars.rasi"
 @import "~/.config/rofi/theme.rasi"
 
+* {
+    radius: 20px;
+    radius-second: 10px;
+    border-size: 3px;
+}
 
 /* ---- Window ---- */
 window {
@@ -112,9 +114,9 @@ button selected {
 
 /* ---- Listview ---- */
 listview {
-	enabled:				true;
-	columns:				3;
-	lines:					5;
+	enabled:				        true;
+	columns:				        3;
+	lines:					        5;
 	spacing:                4px;
 	dynamic:                true;
 	cycle:                  true;
@@ -124,7 +126,7 @@ listview {
 	fixed-height:           true;
 	fixed-columns:          true;
 	background-color:       transparent;
-    border:                 0px;
+  border:                 0px;
 }
 
 /* ---- Element ---- */
@@ -132,7 +134,7 @@ element {
     enabled:                true;
     padding:                5px;
     cursor:                 pointer;
-	orientation: 			vertical;
+	  orientation: 			      vertical;
     background-color:       transparent;
     border-radius:          @radius;
     border:                 0px;

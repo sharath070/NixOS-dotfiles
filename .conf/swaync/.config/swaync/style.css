@@ -147,6 +147,7 @@
 /* Notification clear button */
 .widget-title {
   font-size: 1.2em;
+  margin-top: 14px;
 }
 
 .widget-title button {
@@ -220,7 +221,7 @@
   background: transparent;
   border-radius: 16px;
   color: @text;
-  margin: 20px 6px;
+  margin: 20px 6px 0px 6px;
 }
 
 /* NOTE: Background need *opacity 1* otherwise will turn into the album art blurred  */
