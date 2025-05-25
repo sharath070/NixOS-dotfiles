@@ -15,8 +15,9 @@ return {
 			defaults = {
 				file_ignore_patterns = {
 					"node_modules",
-					"%.conf*",
-					"%.git",
+					"%.conf/",
+					"%.config/",
+					"%.git/",
 				},
 				hidden = true,
 				mappings = {
@@ -28,6 +29,18 @@ return {
 			pickers = {
 				find_files = {
 					hidden = true,
+					follow_gitignore = true, -- Fixed typo: was "follow_gno_ignore"
+					no_ignore_parent = true,
+					find_command = {
+						"rg",
+						"--files",
+						"--hidden",
+						"--no-ignore",
+						"--glob",
+						"!**/.git/*",
+						"--glob",
+						"!**/node_modules/*",
+					},
 				},
 			},
 		})

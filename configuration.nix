@@ -98,6 +98,7 @@
         libnotify
         qbittorrent
         yazi
+        xfce.thunar
         gedit
         networkmanagerapplet
         brightnessctl
@@ -128,6 +129,7 @@
       wget
       git
       gnumake
+      openssl
       gcc
       neovim
       nixd
