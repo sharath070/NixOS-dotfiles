@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
   pkgs,
@@ -136,6 +133,8 @@
       alejandra
       home-manager
       ripgrep
+      pandoc
+      bat
       xdg-user-dirs
       (callPackage ./sddm-theme.nix {theme = "purple_leaves";})
     ])
@@ -168,9 +167,9 @@
   };
 
   fonts.packages = with pkgs; [
-    fira-code
-    jetbrains-mono
+    nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
+    nerd-fonts.terminess-ttf
     nerd-fonts.iosevka
     nerd-fonts.caskaydia-cove
     d2coding

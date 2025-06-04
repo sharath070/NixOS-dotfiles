@@ -2,6 +2,7 @@ local map = vim.keymap.set
 
 map("n", "<esc>", "<cmd>nohlsearch<cr><esc>")
 map("n", "<leader>w", "<cmd>w!<cr>")
+map("n", "<leader>ww", "<cmd>wa!<cr>")
 map("n", "<C-s>", "<cmd>wa<cr>")
 map("n", "<leader>q", "<cmd>q<cr>")
 
@@ -37,8 +38,7 @@ map("n", "<c-k>", "<c-w><c-k>", { desc = "move focus to the upper window" })
 map("n", "<leader>nd", "<cmd>NoiceDismiss<cr>", { desc = "Dismiss noice notifications" })
 map("i", "<C-k>", vim.lsp.buf.signature_help, { noremap = true, silent = true })
 
-map("n", "L", "<cmd>bnext<CR>", { noremap = true, silent = true }) -- Go to next buffer
-map("n", "H", "<cmd>bprevious<CR>", { noremap = true, silent = true }) -- Go to previous buffer
+map("n", "L", "<C-^>", { noremap = true, silent = true }) -- Go to previous buffer
 map("n", "<C-x>", "<cmd>bd<CR>", { noremap = true, silent = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
