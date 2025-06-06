@@ -99,7 +99,6 @@
         gedit
         networkmanagerapplet
         brightnessctl
-        kooha
         stow
         pavucontrol
         rsclock
