@@ -132,6 +132,7 @@
       alejandra
       home-manager
       ripgrep
+      fd
       pandoc
       bat
       xdg-user-dirs
