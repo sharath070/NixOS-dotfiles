@@ -68,6 +68,7 @@
         go
         vscode-fhs
         nodejs
+        pnpm
         ghostty
         tmux
         lazygit
@@ -99,6 +100,7 @@
         gedit
         networkmanagerapplet
         brightnessctl
+        playerctl
         stow
         pavucontrol
         rsclock
@@ -140,6 +142,18 @@
     ])
     ++ (with pkgs-stable; [
       ]);
+
+  # system suspend on lid close
+  services.logind = {
+    lidSwitch = "lock";
+    lidSwitchExternalPower = "lock";
+    lidSwitchDocked = "ignore";
+
+    extraConfig = ''
+      IdleAction=suspend
+      IdleActionSec=3min
+    '';
+  };
 
   services.postgresql = {
     enable = true;

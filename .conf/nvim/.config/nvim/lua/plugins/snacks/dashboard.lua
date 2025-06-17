@@ -3,7 +3,7 @@ return {
 		pick = nil,
 		---@type snacks.dashboard.Item[]
 		keys = {
-			{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+			{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.files()" },
 			{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
 			{
 				icon = " ",

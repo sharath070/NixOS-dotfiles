@@ -8,6 +8,10 @@ return {
 		buffers = {
 			layout = { preset = "select" },
 		},
+		files = {
+			exclude = { "node_modules", ".git/", ".conf*" },
+			hidden = true,
+		},
 	},
 	matcher = { frecency = true },
 	win = {

@@ -38,6 +38,8 @@
     sqlc
     goose
     typescript-language-server
+    # svelte-language-server
+    tailwindcss-language-server
     prettierd
     eslint_d
   ];

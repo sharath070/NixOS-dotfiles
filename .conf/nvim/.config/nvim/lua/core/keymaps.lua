@@ -41,23 +41,10 @@ map("i", "<C-k>", vim.lsp.buf.signature_help, { noremap = true, silent = true })
 map("n", "L", "<C-^>", { noremap = true, silent = true }) -- Go to previous buffer
 map("n", "<C-x>", "<cmd>bd<CR>", { noremap = true, silent = true })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(args)
-		local bufnr = args.buf
-		local opts = { noremap = true, silent = true, buffer = bufnr }
-
-		map("n", "<leader>gd", vim.lsp.buf.definition, opts)
-		map("n", "<leader>gt", vim.lsp.buf.type_definition, opts)
-		map("n", "K", vim.lsp.buf.hover, opts)
-		map("n", "<leader>rn", vim.lsp.buf.rename, opts)
-		map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-		map("n", "[d", function()
-			vim.diagnostic.jump({ count = -1 })
-		end, opts)
-		map("n", "]d", function()
-			vim.diagnostic.jump({})
-		end, opts)
-
-		map("n", "gi", "<cmd>Telescope lsp_references<CR>", opts)
-	end,
-})
+vim.keymap.set({ "n", "v" }, "mf", function()
+	require("conform").format({
+		lsp_fallback = true,
+		async = false,
+		timeout_ms = 500,
+	})
+end, { desc = "Format file or range (in visual mode)" })
