@@ -42,6 +42,7 @@
     tailwindcss-language-server
     prettierd
     eslint_d
+    sassc
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

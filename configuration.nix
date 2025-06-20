@@ -139,6 +139,14 @@
       bat
       xdg-user-dirs
       (callPackage ./sddm-theme.nix {theme = "purple_leaves";})
+      virt-manager
+      virt-viewer
+      spice
+      spice-gtk
+      spice-protocol
+      win-virtio
+      win-spice
+      gnome.adwaita-icon-theme
     ])
     ++ (with pkgs-stable; [
       ]);

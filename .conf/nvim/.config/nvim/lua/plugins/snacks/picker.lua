@@ -9,7 +9,7 @@ return {
 			layout = { preset = "select" },
 		},
 		files = {
-			exclude = { "node_modules", ".git/", ".conf*" },
+			exclude = { "node_modules", ".git/", ".conf*", ".misc" },
 			hidden = true,
 		},
 	},
